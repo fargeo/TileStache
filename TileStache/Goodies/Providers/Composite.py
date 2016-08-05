@@ -451,7 +451,7 @@ def make_color(color):
 def _arr2img(ar):
     """ Convert Numeric array to PIL Image.
     """
-    return Image.fromstring('L', (ar.shape[1], ar.shape[0]), ar.astype(numpy.ubyte).tostring())
+    return Image.frombytes('L', (ar.shape[1], ar.shape[0]), ar.astype(numpy.ubyte).tostring())
 
 def _img2arr(im):
     """ Convert PIL Image to Numeric array.
@@ -799,7 +799,7 @@ if __name__ == '__main__':
         """ A minimal provider that only returns 3x3 bitmaps from strings.
         """
         def __init__(self, string):
-            self.img = Image.fromstring('RGBA', (3, 3), string)
+            self.img = Image.frombytes('RGBA', (3, 3), string)
 
         def renderTile(self, *args, **kwargs):
             return SizelessImage(self.img)
